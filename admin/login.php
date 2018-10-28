@@ -7,26 +7,69 @@ require_once 'inc/Database.php';
 $username = $password = "";
 $username_err = $password_err = "";
 
-// Processing form data when form is submitted
-
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
-
+// Process form data when form is submitted 
+if($_SERVER['REQUEST_METHOD'] == "POST"){
     // Check if username is empty
-    if (empty(trim($_POST['username']))){
+    if(empty(trim($_POST['username']))){
         $username_err = "Please enter username";
-    } else {
+    } else{
         $username = trim($_POST['username']);
     }
-    // Check for password if it is empty
 
-    if (empty(trim($_POST['password']))){
+    // Check if password is empty 
+    if(empty(trim($_POST['password']))){
         $password_err = "Please enter your password";
     } else {
         $password = trim($_POST['password']);
     }
 
+    // Validate credentials 
 
-}
+    if(empty($username_err) && empty($password_err)){
+        // prepare a select statement
+        $sql = "SELECT id, username, password FROM tbl_user WHERE username = :username";
+        if($stmt = $dbh->prepare($sql)){
+            // bind value 
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            // Set parameters 
+            $param_username = trim($_POST['username']);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // check if username exists , if yes then verify password
+                if($stmt->rowCount() == 1 ){
+                    if($row = $stmt->fetch()){
+                        $id = $row['id'];
+                        $username = $row['username'];
+                        $hashed_password = $row['password'];
+                        if(password_verify($password, $hashed_password)){
+                            // password is correct , so start a new session
+                            session_start();
+
+                            // Store data in session
+                            $_SESSION['loggedin'] = true;
+                            $_SESSION['id'] = $id;
+                            $_SESSION['username'] = $username;
+                            // Redirect user to welcome page 
+                            header('location: welcome.php');
+                        } else {
+                            $password_err = 'Password did not matched';
+                        }
+                    }
+                }
+            }else{
+
+            }
+        }else{
+            echo "Data did not matched";
+        }
+
+    } else {
+        echo "Data not found";
+    }
+} // end of form process 
+    
+
 
 ?>
 

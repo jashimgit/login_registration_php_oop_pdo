@@ -1,5 +1,5 @@
 <?php
-include '../config/config.php';
+include 'config/config.php';
 
 Class Database {
 	private $host = 'localhost';
@@ -7,8 +7,8 @@ Class Database {
 	private $pass = '4833';
 	private $dbname = 'sumonwebbd';
 
-	private $dbh;
-	private $error;
+	public $dbh;
+	public $error;
 
 
 	public function __construct() {
@@ -20,7 +20,7 @@ Class Database {
 
 		try {
 			$this->dbh = new PDO( $dsn, $this->user, $this->pass, $options );
-			echo "Database connection successfull";
+			// echo "Database connection successfull";
 		} catch ( PDOException $e ) {
 			$this->error = $e->getMessage();
 			echo $this->error;
