@@ -1,0 +1,206 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: ubuntu;
+    background: url(../img/awesome-space.jpg), rgba(0,0,0, 0.8);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f4f4f4;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25%;
+    width: 50%;
+    height: 100%;
+    background-color: #03a9f4;
+    opacity: 0.6;
+}
+.form {
+    top:50%;
+    left: 25%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background: rgba(255, 255, 255, 0.2);
+    min-height: 400px;
+    box-shadow: 0 15px 50px rgba(0,0,0, 0.5);  
+    padding: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+     
+}
+.form h2 {
+    color: rgb(100, 80, 80);
+    margin: 0 0 40px;
+    padding: 0;
+
+}
+.form .input-box {
+    position: relative;
+    margin: 20px 0;
+}
+.form .input-box  input{
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #777;
+    outline: none;
+    padding: 10px;
+    padding-left: 25px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #000;
+    border-radius: 5px;
+}
+.form .input-box input:focus,
+.form .input-box input:valid {
+    border-bottom: 2px solid #03a9f4; 
+}
+
+.form .input-box .fa {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-size: 20x; 
+    color: #777;
+}
+.form .input-box input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    background: #03a9f4;
+    color: #ddd;
+    font-weight: bold;
+
+    transition:  0.5s;
+}
+.form .input-box input[type="submit"]:hover{
+
+    background: #ff4987;
+}
+.form a {
+    text-decoration: none;
+    color: #777;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.5s;
+
+}
+.form a:hover{
+    color: #ff4987;
+}
+
+.navbar {
+	min-height: 25px !important;
+	margin-bottom: 0;
+	border-radius: 0;
+	background-color: #e74c3c;
+}
+
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top: 6px !important;
+    padding-bottom: 0 !important;
+    height: 33px;
+}
+
+.navbar-default {
+    background-color: #e74c3c !important;
+    border-color: #c0392b !important;
+}
+.navbar-default .navbar-brand {
+    color: #ecf0f1 !important;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #ffbbbc !important;
+}
+
+.navbar-default .navbar-text {
+    color: #ecf0f1 !important;
+}
+
+.navbar-default .navbar-nav  > li > a {
+    color: #eeccf1 !important;
+}
+
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #ffbbbc !important;
+  
+}
+
+
+.navbar-default .navbar-nav  > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ffffff !important;
+    background-color: #c0392b !important;
+}
+
+.navbar-default .navbar-nav  > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #ffbbbc !important;
+    background-color: #c0392b !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: #c0392b !important;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #c0392b !important;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+    color: #ecf0f1 !important;
+}
+.navbar-default .navbar-link:hover {
+    color: #ffbbbc !important;
+}
+
+/* our code  */
+
+.main-color-bg {
+    background-color: #e74c3c !important;
+    border-color: #c0392b !important;
+    color: #ffffff !important;
+}
+
+
+/* Header section  */
+#header {
+    background-color: #333;
+    color:#fff;
+    padding-bottom: 10px ;
+    margin-bottom: 15px;
+}
+#header .create {
+    margin-top: 20px;
+    color: #ffffff !important;
+}
+
+/* breadcrumb */
+
+.breadcrumb {
+    background: #cccccc;
+    color: #333333;
+}
+.breadcrumb a {
+    color: #333;
+}
+.dash-box {
+    text-align: center;
+}
+#footer {
+    background: #333333;
+    color:#fff;
+    text-align: center;
+    padding: 10px;
+}
