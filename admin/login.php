@@ -28,17 +28,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty($username_err) && empty($password_err)){
         // prepare a select statement
         $sql = "SELECT id, username, password FROM tbl_user WHERE username = :username";
-        if($stmt = $dbh->prepare($sql)){
+        if($sth = $dbh->prepare($sql)){
             // bind value 
-            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            $sth->bindParam(":username", $param_username, PDO::PARAM_STR);
             // Set parameters 
             $param_username = trim($_POST['username']);
 
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
+            if($sth->execute()){
                 // check if username exists , if yes then verify password
-                if($stmt->rowCount() == 1 ){
-                    if($row = $stmt->fetch()){
+                if($sth->rowCount() == 1 ){
+                    if($row = $sth->fetch()){
                         $id = $row['id'];
                         $username = $row['username'];
                         $hashed_password = $row['password'];
