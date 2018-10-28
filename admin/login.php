@@ -1,7 +1,7 @@
 <?php
 // include Database
 require_once 'inc/Database.php';
-
+$db = new Database();
 // Define variables and initialize with empty values
 
 $username = $password = "";
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(empty($username_err) && empty($password_err)){
         // prepare a select statement
         $sql = "SELECT id, username, password FROM tbl_user WHERE username = :username";
-        if($sth = $dbh->prepare($sql)){
+        if($sth = $db->dbh->prepare($sql)){
             // bind value 
             $sth->bindParam(":username", $param_username, PDO::PARAM_STR);
             // Set parameters 
@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             $_SESSION['id'] = $id;
                             $_SESSION['username'] = $username;
                             // Redirect user to welcome page 
-                            header('location: welcome.php');
+                            header('location:index.php');
                         } else {
                             $password_err = 'Password did not matched';
                         }
@@ -77,36 +77,33 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="bootstrap/css/main.css">
-    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
     <title>Login</title>
-
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+    </style>
 </head>
 <body>
-
-<div class="form">
-    <form action="login.php" method="post" enctype="multipart/form-data">
-        <h2>Sign In</h2>
-
-
-        <div class="input-box">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" name="username" placeholder="Username">
-        </div>
-        <div class="input-box">
-                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                <input type="text" name="password" placeholder="Password">
-        </div>
-        <div class="input-box">
-                
-                <input type="submit" value="Login">
-        </div>
-    <a href="#">Forget password !!</a>
-    </form>
-</div>
-
-    
+    <div class="wrapper">
+        <h2>Login</h2>
+        <p>Please fill in your credentials to login.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login">
+            </div>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+        </form>
+    </div>
 </body>
 </html>

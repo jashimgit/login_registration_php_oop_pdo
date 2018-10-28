@@ -5,11 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="bootstrap/css/main.css">
 	<!-- jquery link  -->
 	<script src="bootstrap/js/jquery-3.2.0.min.js"></script>
 	<!-- bootstrap core javascript link -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+	<script>
+		CKEDITOR.replace( 'editor1' );
+	</script>
 
 	<title>Admin Panel | Bootstrap V.3</title>
 </head>
@@ -24,16 +28,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">Brand</a>
+			<a class="navbar-brand" href="index.php">Brand</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.html">Dashboard <span class="sr-only">(current)</span></a></li>
-				<li><a href="page.html">Pages</a></li>
-				<li><a href="post.html">Posts</a></li>
-				<li><a href="user.html">Users</a></li>
+				<li><a href="page.php">Pages</a></li>
+				<li><a href="post.php">Posts</a></li>
+				<li><a href="user.php">Users</a></li>
 				</li>
 			</ul>
 
