@@ -1,5 +1,5 @@
 <?php
-include 'config/config.php';
+include '../config/config.php';
 
 Class Database {
 	private $host = 'localhost';

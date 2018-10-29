@@ -1,3 +1,18 @@
+<?php
+$filepath = realpath(dirname(dirname(__FILE__)));
+include $filepath.'/helper/Session.php';
+
+
+$loginMsg = Session::get('loginmsg');
+
+if (isset($loginMsg)){
+	echo $loginMsg;
+}
+if(isset($_GET['action']) && $_GET['action'] == 'logout'){
+    Session::destroy();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +26,7 @@
 	<!-- bootstrap core javascript link -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-	<script>
-		CKEDITOR.replace( 'editor1' );
-	</script>
+	
 
 	<title>Admin Panel | Bootstrap V.3</title>
 </head>
@@ -34,7 +47,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">Dashboard <span class="sr-only">(current)</span></a></li>
+				<li class="active"><a href="index.php">Dashboard <span class="sr-only">(current)</span></a></li>
 				<li><a href="page.php">Pages</a></li>
 				<li><a href="post.php">Posts</a></li>
 				<li><a href="user.php">Users</a></li>
@@ -42,8 +55,15 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li> <a href="#">Welcome User </a> </li>
-				<li><a href="login.php">Log out</a></li>
+				<li> <a href="#"><strong>Welcome</strong><?php $name = Session::get('username');
+                            if (isset($name)){
+                                echo $name;
+                            }
+                        ?>
+                    </a>
+
+                </li>
+				<li><a href="?action=logout">Log out</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->

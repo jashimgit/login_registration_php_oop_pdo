@@ -13,7 +13,7 @@ class Session {
 	// Set session data
 
 
-	public static function setData($key, $value){
+	public static function set($key, $value){
 		$_SESSION['key'] = $value;
 	}
 
@@ -33,6 +33,14 @@ class Session {
 			header('Location: login.php');
 		} else {
 			return false;
+		}
+	}
+
+	public function checkLogin() {
+		if(self::get('login') == true){
+			header('location:index.php');
+		}else{
+			header('location:login.php');
 		}
 	}
 

@@ -1,4 +1,11 @@
 <?php require_once 'inc/header.php'; ?>
+<?php require_once 'helper/Session.php'; ?>
+<?php
+
+Session::checkSession();
+
+
+?>
 
 <section id="breadcrumb">
     <div class="container">
@@ -7,6 +14,16 @@
         </ol> 
     </div>
 </section>
+<div class="container">
+	<?php
+	$loginMsg = Session::get('loginmsg');
+	if (isset($loginMsg)){
+		echo $loginMsg;
+	}
+
+	?>
+</div>
+
 
 <section id="main">
 <div class="container">
